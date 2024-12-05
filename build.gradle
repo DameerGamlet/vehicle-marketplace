@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'io.quarkus' version '3.17.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = 'com.vehicle.online.VehicleApplication'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.guava
+
+    implementation enforcedPlatform("io.quarkus.platform:quarkus-bom:3.17.2")
+
+    implementation "io.quarkus:quarkus-rest"
+    implementation "io.quarkus:quarkus-hibernate-orm-panache"
+    implementation "io.quarkus:quarkus-jdbc-h2"
+    implementation "io.quarkus:quarkus-hibernate-validator"
+    implementation "io.quarkus:quarkus-smallrye-openapi"
+    implementation "io.quarkus:quarkus-arc"
+    testImplementation "io.quarkus:quarkus-junit5"
+
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.1'
+    implementation 'org.jboss.resteasy:resteasy-client:4.7.5.Final'
+
+    implementation "org.apache.maven:maven-settings-builder:3.9.4"
+    implementation "org.apache.maven:maven-settings:3.9.4"
+}
+
+testing {
+    suites {
+        test {
+            useJUnit('4.13.2')
+        }
+    }
+}
